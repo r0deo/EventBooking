@@ -1,27 +1,30 @@
-# progress 
-
-# week 1 
-Day 1 : tools installed, Repo created, project intiliazed 
-
 # Event Booking system 
-# problem: User may choose or select the same seat in the same time. that creates a race condition, withen the system we are creating. we will solve this issue 
+# problem: Organizers need a way to sell seats for events, and customers need to find an event, pick a seat and pay, without ever getting a seat someone else already bought
 
 # user/ roles 
-1. normal users
-2. owners 
-3. labors(mentors, organizars, etc)
+Customer (browses and books), Organizer (creates events and seats), Admin (manages the platform).
 
 # core features. mvp 
-1. api for selecting a seat (endpoint, validation, request body, enity, buisness rules file, table in db, response)
-2. authentacation 
-2. tests (unit test, integration tests)
+Customer can see the list of upcoming events
+customer can see a list of available seats
+customer can choose a seat to book 
+customer can unbook or cancel his seat
+customer can select many seats for himself and others from his side 
+Organizer can create an event with a venue and seats
+Owner can manage organizers
+Owner can show seats 
+Check seat is available 
+check the token
+
 
 
 # out of scope 
 1. front end
-2. caching 
+2. caching Not in version 1
 
 # non-functional requirements 
-1. response should be sent under 5 sec
-2. check if the seat is availabe before we sent a response 
-3. check the token of the request 
+1. response should be sent in 500ms
+2. a seat must never be sold twice 
+3. 2000 peopel only alowed to select seates. in order to prevent load 
+4. two users should not choose the same seat. that creates race condition 
+5. only logged in users should book 

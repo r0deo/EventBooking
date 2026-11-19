@@ -1,30 +1,39 @@
-# Event Booking system 
-# problem: Organizers need a way to sell seats for events, and customers need to find an event, pick a seat and pay, without ever getting a seat someone else already bought
+# Event Booking System
 
-# user/ roles 
-Customer (browses and books), Organizer (creates events and seats), Admin (manages the platform).
+## Problem
 
-# core features. mvp 
-Customer can see the list of upcoming events
-customer can see a list of available seats
-customer can choose a seat to book 
-customer can unbook or cancel his seat
-customer can select many seats for himself and others from his side 
-Organizer can create an event with a venue and seats
-Owner can manage organizers
-Owner can show seats 
-Check seat is available 
-check the token
+Organizers need a way to sell seats for events, and customers need to find an event, pick a seat and pay, without ever getting a seat someone else already bought.
 
+## User roles
 
+- Customer: browses events and books seats.
+- Organizer: creates events and seats.
+- Admin: manages the platform.
 
-# out of scope 
-1. front end
-2. caching Not in version 1
+## Core features (MVP)
 
-# non-functional requirements 
-1. response should be sent in 500ms
-2. a seat must never be sold twice 
-3. 2000 peopel only alowed to select seates. in order to prevent load 
-4. two users should not choose the same seat. that creates race condition 
-5. only logged in users should book 
+- Customer can view upcoming events.
+- Customer can view available seats for an event.
+- Customer can book one or more seats for themselves and others.
+  - Rules: validate the Customer's authentication token and check that every selected seat is available before accepting the booking.
+- Customer can pay for a booking.
+  - Rules: validate the Customer's authentication token and booking ownership; confirm the booking only after successful payment.
+- Customer can view their bookings and payment status.
+  - Rules: validate the Customer's authentication token and return only their own bookings.
+- Customer can cancel their booking.
+  - Rules: validate the Customer's authentication token and booking ownership before cancellation.
+- Organizer can create an event with a venue and seats.
+  - Rules: validate the authentication token and require the Organizer role.
+- Admin can manage organizers.
+  - Rules: validate the authentication token and require the Admin role.
+
+## Out of scope
+
+- Front end.
+- Caching in version 1.
+
+## Non-functional requirements
+
+- Responses must be sent within 500 ms.
+- A seat must never be sold twice, even when many users try to book it at the same moment (race condition).
+- The system must handle 2,000 booking attempts in the first minute of a popular event.

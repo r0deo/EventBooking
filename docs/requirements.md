@@ -1,27 +1,44 @@
-# progress 
+# Event Booking System
 
-# week 1 
-Day 1 : tools installed, Repo created, project intiliazed 
+## Problem
 
-# Event Booking system 
-# problem: User may choose or select the same seat in the same time. that creates a race condition, withen the system we are creating. we will solve this issue 
+Organizers need a way to sell seats for events, and customers need to find an event, pick a seat and pay, without ever getting a seat someone else already bought.
 
-# user/ roles 
-1. normal users
-2. owners 
-3. labors(mentors, organizars, etc)
+## User roles
 
-# core features. mvp 
-1. api for selecting a seat (endpoint, validation, request body, enity, buisness rules file, table in db, response)
-2. authentacation 
-2. tests (unit test, integration tests)
+- Customer: browses events and books seats.
+- Organizer: creates events and seats.
+- Admin: manages the platform.
 
+## Core features (MVP)
 
-# out of scope 
-1. front end
-2. caching 
+- Customer can view upcoming events.
+- Customer can view available seats for an event.
+- Customer can book one or more seats for themselves and others.
+  - Rules: validate the Customer's authentication token and check that every selected seat is available before accepting the booking.
+- Customer can pay for a booking.
+  - Rules: validate the Customer's authentication token and booking ownership; confirm the booking only after successful payment.
+- Customer can view their bookings and payment status.
+  - Rules: validate the Customer's authentication token and return only their own bookings.
+- Customer can cancel their booking.
+  - Rules: validate the Customer's authentication token and booking ownership before cancellation.
+- Organizer can create an event with a venue and seats.
+  - Rules: validate the authentication token and require the Organizer role.
+- Admin can manage organizers.
+  - Rules: validate the authentication token and require the Admin role.
 
-# non-functional requirements 
-1. response should be sent under 5 sec
-2. check if the seat is availabe before we sent a response 
-3. check the token of the request 
+## Out of scope
+
+- Front end.
+- Caching in version 1.
+
+## Non-functional requirements
+
+- Responses must be sent within 500 ms.
+- A seat must never be sold twice, even when many users try to book it at the same moment (race condition).
+- The system must handle 2,000 booking attempts in the first minute of a popular event.
+
+## buisness rules 
+- the seat hold time (configrable in appesetting. 10 min for paying)
+- booking should be handled with atomicity 
+- 

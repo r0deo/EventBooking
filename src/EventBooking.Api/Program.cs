@@ -32,7 +32,7 @@ app.UseHttpsRedirection();
 // This checks access permissions, not login credentials. If authentication is added later, UseAuthentication belongs before UseAuthorization.
 app.UseAuthorization();
 
-// Register controller actions as endpoints using their route attributes, including GET /api/EventList.
+// Register controller actions as endpoints using their route attributes, including GET /api/events.
 // Map calls declare endpoints rather than adding ordinary middleware steps. WebApplication supplies routing and endpoint execution automatically,
 // so the matched controller action runs after the authorization middleware has had a chance to check access.
 app.MapControllers();

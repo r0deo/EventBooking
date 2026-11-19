@@ -37,3 +37,8 @@ Organizers need a way to sell seats for events, and customers need to find an ev
 - Responses must be sent within 500 ms.
 - A seat must never be sold twice, even when many users try to book it at the same moment (race condition).
 - The system must handle 2,000 booking attempts in the first minute of a popular event.
+
+## buisness rules 
+- the seat hold time (configrable in appesetting. 10 min for paying)
+- booking should be handled with atomicity 
+- 

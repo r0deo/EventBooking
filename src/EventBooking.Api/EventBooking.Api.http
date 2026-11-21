@@ -4,3 +4,21 @@ GET {{EventBooking.Api_HostAddress}}/api/events
 Accept: application/json
 
 ###
+
+# Existing event: expect 200 OK.
+GET {{EventBooking.Api_HostAddress}}/api/events/64a48bf1-32b6-4726-a028-09b9831dd854
+Accept: application/json
+
+###
+
+# Unknown event: expect 404 Not Found.
+GET {{EventBooking.Api_HostAddress}}/api/events/d4a420ac-b0c0-4a36-a90f-571f876c0933
+Accept: application/json
+
+###
+
+# Invalid GUID: expect 404 because the route constraint does not match.
+GET {{EventBooking.Api_HostAddress}}/api/events/not-a-guid
+Accept: application/json
+
+###

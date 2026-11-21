@@ -4,6 +4,7 @@ namespace EventBooking.Api.Services;
 
 public interface IEventService
 {
-    IReadOnlyList<EventListItem> GetAll();
+    // Return only events whose start time is still in the future.
+    IReadOnlyList<EventListItem> GetUpcoming();
     EventListItem? GetById(Guid id);
 }

@@ -18,7 +18,7 @@ public class EventsController : ControllerBase
     [HttpGet]
     public ActionResult<IReadOnlyList<EventListItem>> GetEvents()
     {
-        var events = _eventService.GetAll();
+        var events = _eventService.GetUpcoming();
         return Ok(events);
     }
 

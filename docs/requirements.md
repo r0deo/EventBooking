@@ -13,6 +13,7 @@ Organizers need a way to sell seats for events, and customers need to find an ev
 ## Core features (MVP)
 
 - Customer can view upcoming events.
+  - Rule: only return events whose start time is later than the current UTC time.
 - Customer can view available seats for an event.
 - Customer can book one or more seats for themselves and others.
   - Rule: check that every selected seat is available before holding the seats.

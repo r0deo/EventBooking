@@ -4,6 +4,8 @@ namespace EventBooking.Api.Services;
 
 public class InMemoryEventService : IEventService
 {
+    private readonly TimeProvider _timeProvider;
+
     private readonly IReadOnlyList<EventListItem> _events =
         new List<EventListItem>
         {
@@ -24,9 +26,15 @@ public class InMemoryEventService : IEventService
                 "Erbil Convention Center")
         }.AsReadOnly();
 
-    public IReadOnlyList<EventListItem> GetAll()
+    public InMemoryEventService(TimeProvider timeProvider)
     {
-        return _events;
+        _timeProvider = timeProvider;
+    }
+
+    public IReadOnlyList<EventListItem> GetUpcoming()
+    {
+        var utcNow = _timeProvider.GetUtcNow().UtcDateTime;
+        return _events.Where(e => e.Date > utcNow).ToArray();
     }
 
     public EventListItem? GetById(Guid id)

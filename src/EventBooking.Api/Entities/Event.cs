@@ -3,9 +3,11 @@ namespace EventBooking.Api.Entities;
 public class Event
 {
     public Guid Id {get; set;}
-    public Venue Venue {get; set;}
-    public String Name {get; set;}
+
+    public required string Name {get; set;}
+    public required string Currency {get; set;}
+    public DateTimeOffset StarAt {get; set;}
+    
     public Guid VenueId {get; set;}
-    public String Currency {get; set;}
-    public DateTime StartDate {get; set;}
+    public Venue Venue {get; set;}
 }
